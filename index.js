@@ -6,25 +6,28 @@ let scorePlayer2 = 0
 
 function updateTitle() {
   const playerInput = document.getElementById(turnPlayer)
-  document.getElementById('turnPlayer').innerText = playerInput.value
+  document.getElementById('turnPlayer').textContent = playerInput.value
 }
 
 function updateScoreboard() {
-  document.getElementById('scorePlayer1').innerText = scorePlayer1
-  document.getElementById('scorePlayer2').innerText = scorePlayer2
+  document.getElementById('scorePlayer1').textContent = scorePlayer1
+  document.getElementById('scorePlayer2').textContent = scorePlayer2
 }
 
 function initializeGame() {
   // Inicializa as variáveis globais 
   vBoard = [['', '', ''], ['', '', ''], ['', '', '']]
   turnPlayer = 'player1'
-  // Ajusta o título da página (caso seja necessário)
-  document.querySelector('h2').innerHTML = 'Vez de: <span id="turnPlayer"></span>'
+  // Ajusta o título da página
+  document.querySelector('h2').textContent = 'Vez de: '
+  const turnPlayerSpan = document.createElement('span')
+  turnPlayerSpan.id = 'turnPlayer'
+  document.querySelector('h2').appendChild(turnPlayerSpan)
   updateTitle()
-  // Limpa o tabuleiro (caso seja necessário) e adiciona os eventos de clique
+  // Limpa o tabuleiro e adiciona os eventos de clique
   boardRegions.forEach(function (element) {
     element.classList.remove('win')
-    element.innerText = ''
+    element.textContent = ''
     element.classList.add('cursor-pointer')
     element.addEventListener('click', handleBoardClick)
   })
@@ -59,13 +62,13 @@ function disableRegion(element) {
   element.removeEventListener('click', handleBoardClick)
 }
 
-// Pinta as regiões as regiões que fizeram o player vencer
+// Pinta as regiões que fizeram o player vencer e desabilita o tabuleiro
 function handleWin(regions) {
   regions.forEach(function (region) {
     document.querySelector('[data-region="' + region + '"]').classList.add('win')
   })
   const playerName = document.getElementById(turnPlayer).value
-  document.querySelector('h2').innerHTML = playerName + ' venceu!'
+  document.querySelector('h2').textContent = playerName + ' venceu!'
   
   // Atualizar o placar
   if (turnPlayer === 'player1') {
@@ -73,7 +76,10 @@ function handleWin(regions) {
   } else {
     scorePlayer2++
   }
-  updateScoreboard() 
+  updateScoreboard()
+  
+  // Desabilitar cliques em todas as regiões
+  boardRegions.forEach(disableRegion)
 }
 
 function handleBoardClick(ev) {
@@ -85,10 +91,10 @@ function handleBoardClick(ev) {
   const column = rowColumnPair[1]
   // Marca a região clicada com X no caso de player 1 e O no caso de player 2
   if (turnPlayer === 'player1') {
-    span.innerText = 'X'
+    span.textContent = 'X'
     vBoard[row][column] = 'X'
   } else {
-    span.innerText = 'O'
+    span.textContent = 'O'
     vBoard[row][column] = 'O'
   }
   // Limpa o console e exibe o tabuleiro 
@@ -104,7 +110,7 @@ function handleBoardClick(ev) {
     turnPlayer = turnPlayer === 'player1' ? 'player2' : 'player1'
     updateTitle()
   } else {
-    document.querySelector('h2').innerHTML = 'Empate!'
+    document.querySelector('h2').textContent = 'Empate!'
   }
 }
 
