@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jogo da Velha</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&family=Rubik+Wet+Paint&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="index.js" defer></script>
+  </head>
+  <body>
+    <div class="bg-title">
+      <h1 class="title">Jogo da Velha</h1>
+    </div>
+    <hr />
+    <div class="jogo">
+      <label for="player1" class="label-1">X</label>
+      <input
+        type="text"
+        id="player1"
+        placeholder="Nome do Jogador 1"
+        class="input-name"
+      />
+      <label for="player2" class="label-2">O</label>
+      <input
+        type="text"
+        id="player2"
+        placeholder="Nome do Jogador 2"
+        class="input-name"
+      />
+      <button id="start">Começar!</button>
+      <h2>Vez de: <span id="turnPlayer"></span></h2>
+      <div class="bg-game-board">
+      <section id="gameBoard">
+        <span class="cursor-pointer" data-region="0.0"></span>
+        <span class="cursor-pointer" data-region="0.1"></span>
+        <span class="cursor-pointer" data-region="0.2"></span>
+        <span class="cursor-pointer" data-region="1.0"></span>
+        <span class="cursor-pointer" data-region="1.1"></span>
+        <span class="cursor-pointer" data-region="1.2"></span>
+        <span class="cursor-pointer" data-region="2.0"></span>
+        <span class="cursor-pointer" data-region="2.1"></span>
+        <span class="cursor-pointer" data-region="2.2"></span>
+      </section>
+    </div>
+    </div>
+
+    <div class="placar">
+      <p class="placar-title">PLACAR</p>
+      <p>Jogador 1 (X): <span id="scorePlayer1">0</span></p>
+      <p>Jogador 2 (O): <span id="scorePlayer2">0</span></p>
+    </div>
+
+  </body>
+    <footer>
+      <p>&copy; Jogo feito por Mateus Salomé</p>
+    </footer>
+
+</html>
